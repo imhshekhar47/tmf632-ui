@@ -4,8 +4,8 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppNavBar } from './components';
 import { DashboardPage } from './pages/DashboardPage';
-import { IndividualPage } from './pages/IndividualPage';
 import { OrganizationPage } from './pages/OrganizationPage';
+import { IndividualPage } from './pages/party/IndividualPage';
 
 
 
@@ -13,9 +13,7 @@ const theme = createTheme({
 
 })
 
-
 export const App: React.FunctionComponent = () => {
-
   return (
     <ThemeProvider theme={theme}>
       <Router>

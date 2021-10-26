@@ -33,7 +33,7 @@ export const OrganizationPartyList: React.FunctionComponent = () => {
                             <ListItemIcon><Icon>star</Icon></ListItemIcon>
                             <ListItemText primary={party.name} secondary={party.tradingName} />
                         </ListItem>
-                    ))
+                    )) 
                 }
             </List>
         </Box>

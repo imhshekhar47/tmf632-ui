@@ -1,8 +1,8 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
-import { PageNavBar } from '../components';
-import { IndividualPartyList } from '../components/Party/IndividuaParty';
-import { OrganizationPartyList } from '../components/Party/OrganizationParty';
+import { PageToolbar } from '../components';
+import { IndividualPartyList } from '../components/Party';
+import { OrganizationPartyList } from '../components/Party';
 
 
 
@@ -12,7 +12,7 @@ type DahboardPageProps = {
 export const DashboardPage: React.FunctionComponent<DahboardPageProps> = () => {
     return (
         <div>
-            <PageNavBar title="Dashboard" />
+            <PageToolbar title="Dashboard" />
             <Box display="flex">
                 <Box flexGrow={1} p={2}>
                     <IndividualPartyList />

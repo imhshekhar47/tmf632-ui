@@ -1,37 +1,23 @@
-import { 
-    Avatar,
-    Box, 
-    Button, 
-    FormControl, 
-    Icon, 
-    IconButton, 
-    InputLabel, 
-    List, 
-    ListItem, 
-    ListItemIcon, 
-    ListItemText, 
-    MenuItem, 
-    Paper, 
-    Select, 
-    StepIconProps, 
-    TextField, 
-    Theme, 
-    Typography 
-} 
-from '@material-ui/core';
-import Step from '@material-ui/core/Step';
-import StepContent from '@material-ui/core/StepContent';
-import StepLabel from '@material-ui/core/StepLabel';
-import Stepper from '@material-ui/core/Stepper';
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { Search } from '@material-ui/icons';
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Icon from "@material-ui/core/Icon";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Paper from "@material-ui/core/Paper";
+import Select from "@material-ui/core/Select";
+import Step from "@material-ui/core/Step";
+import StepContent from "@material-ui/core/StepContent";
+import StepLabel from "@material-ui/core/StepLabel";
+import Stepper from "@material-ui/core/Stepper";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import clsx from 'clsx';
-import React, { useEffect } from 'react';
-import { API } from '../../Api';
-import { Individual, Individual_Create } from '../../gen/tmf632';
-import { UTIL } from '../../Util';
-import { Route, Link as RouterLink } from 'react-router-dom';
-
+import React from "react";
+import { API } from "../../Api";
+import { Individual } from "../../gen/tmf632/models/Individual";
+import { Individual_Create } from "../../gen/tmf632/models/Individual_Create";
+import { UTIL } from "../../Util";
 
 
 const stepLabelIconStyle = makeStyles((theme: Theme) => createStyles({
@@ -48,8 +34,9 @@ const stepLabelIconStyle = makeStyles((theme: Theme) => createStyles({
         color: theme.palette.background.paper,
     }
 }))
-interface StepLabelIconProps extends StepIconProps {
-    icon: string
+interface StepLabelIconProps {
+    icon: string,
+    active: boolean
 }
 const StepLabelIcon: React.FunctionComponent<StepLabelIconProps> = ({ icon, active }) => {
     const classes = stepLabelIconStyle()
@@ -62,7 +49,6 @@ const StepLabelIcon: React.FunctionComponent<StepLabelIconProps> = ({ icon, acti
     )
 }
 
-/* Individual Form*/
 
 const defaultIndividual: Individual | Individual_Create = {
     id: '',
@@ -79,11 +65,12 @@ const defaultIndividual: Individual | Individual_Create = {
 const formStyle = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-
+            padding: theme.spacing(2, 0),
         },
         heading: {
             color: theme.palette.info.main,
             fontWeight: theme.typography.fontWeightLight,
+            fontSize: theme.spacing(2),
         },
         form: {
             marginTop: theme.spacing(2),
@@ -141,6 +128,8 @@ const formStyle = makeStyles((theme: Theme) =>
             }
         },
         stepper: {
+            padding: theme.spacing(2),
+
             '& .MuiStepLabel-root': {
                 color: theme.palette.grey[500],
             },
@@ -159,7 +148,7 @@ const formStyle = makeStyles((theme: Theme) =>
 type IndividualFormProps = {
     data?: Individual | Individual_Create | undefined
 }
-export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> = ({ data }) => {
+export const IndividualPartyCreate: React.FunctionComponent<IndividualFormProps> = ({ data }) => {
     const [activeStep, setActiveStep] = React.useState<number>(0)
     const [individual, setIndividual] = React.useState<Individual | Individual_Create>({ ...defaultIndividual || data });
     const [submitBtnDisabled, setSubmitBtnDisabled] = React.useState<boolean>(false);
@@ -175,16 +164,16 @@ export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> =
 
     const handleTitleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
         console.log(e.target.value);
-        setIndividual({ ...individual,  'title': e.target.value as string })
+        setIndividual({ ...individual, 'title': e.target.value as string })
     }
 
     const handleGenderChange = (e: React.ChangeEvent<{ value: unknown }>) => {
         console.log(e.target.value);
-        setIndividual({ ...individual,  'gender': e.target.value as string });
+        setIndividual({ ...individual, 'gender': e.target.value as string });
     }
 
     const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIndividual({...individual, [e.target.name]: e.target.value});
+        setIndividual({ ...individual, [e.target.name]: e.target.value });
     }
 
     const isActive = (index: number) => index === activeStep
@@ -210,6 +199,7 @@ export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> =
     }
 
     const css = formStyle();
+
     return (
         <div className={css.root}>
             <Typography variant="h6" component="h2" className={css.heading}>Create Individual Party</Typography>
@@ -243,13 +233,13 @@ export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> =
                                 <TextField label="Middle Name" id='middleName' name="middleName"
                                     size="small" variant="outlined" type="text"
                                     InputLabelProps={{ shrink: true }}
-                                    className='sm' value={individual.middleName} 
+                                    className='sm' value={individual.middleName}
                                     onChange={onTextChange} />
 
                                 <TextField required label="Family Name" id='familyName' name="familyName"
                                     size="small" variant="outlined" type="text"
                                     InputLabelProps={{ shrink: true }}
-                                    className="sm" value={individual.familyName} 
+                                    className="sm" value={individual.familyName}
                                     onChange={onTextChange} />
                             </div>
                             <div className='row'>
@@ -270,7 +260,7 @@ export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> =
                                 <TextField label="Birth Date" id="birthDate" name="birthDate"
                                     size="small" variant="outlined" type="date"
                                     InputLabelProps={{ shrink: true }}
-                                    className='sm' 
+                                    className='sm'
                                     defaultValue={individual.birthDate}
                                     value={individual.birthDate}
                                     onChange={onTextChange} />
@@ -278,12 +268,12 @@ export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> =
                                 <TextField label="Country Of Birth" id="countryOfBirth" name="countryOfBirth"
                                     size="small" variant="outlined" type="text"
                                     InputLabelProps={{ shrink: true }}
-                                    className='sm' 
+                                    className='sm'
                                     value={individual.countryOfBirth}
-                                    onChange={onTextChange}/>
+                                    onChange={onTextChange} />
 
                                 <TextField label="Death Date" id="deathDate" name="deathDate"
-                                    size="small" variant="outlined" type="date" 
+                                    size="small" variant="outlined" type="date"
                                     InputLabelProps={{ shrink: true }}
                                     className='sm'
                                     defaultValue={individual.deathDate}
@@ -330,44 +320,5 @@ export const IndividualPartyForm: React.FunctionComponent<IndividualFormProps> =
             </form>
         </div>
 
-    )
-}
-
-export const IndividualPartyList: React.FunctionComponent = () => {
-    const [individuals, setIndividuals] = React.useState<Individual[]>([])
-
-    useEffect(() => {
-        API.individualService.listIndividual()
-            .then(response => {
-                console.log(response);
-                setIndividuals(response);
-            })
-            .catch(err => {
-                throw new Error(err);
-            })
-
-    }, [])
-
-    return (
-        <Box display='flex' flexDirection="column">
-            <Box display="flex" flexGrow={1}>
-                <TextField fullWidth variant="outlined" size="small" id="" type="search" placeholder="Name" />
-                <IconButton color="primary" component="span"><Search /></IconButton>
-            </Box>
-            <List>
-                <Route
-                    path="/individual/:id"
-                    component={IndividualPartyForm}
-                />
-                {
-                    individuals.map((party, idx) => (
-                        <ListItem key={`p-${idx}-${party.id}`} component={RouterLink} to={`/individual/${party.id}`}>
-                            <ListItemIcon><Avatar><Icon>person</Icon></Avatar></ListItemIcon>
-                            <ListItemText primary={party.fullName} secondary={party.id} />
-                        </ListItem>
-                    ))
-                }
-            </List>
-        </Box>
     )
 }

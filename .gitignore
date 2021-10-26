@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-/mocks
+# generated
+src/gen/
 # dependencies
 /node_modules
 /.pnp

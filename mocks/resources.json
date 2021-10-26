@@ -1,0 +1,72 @@
+{
+    "organization": [
+        {
+            "id": 1,
+            "href": "http://localhost:8080/partyManagement/v4/organization/1",
+            "isHeadOffice": true,
+            "isLegalEntity": true,
+            "name": "R.C. Football Club",
+            "nameType": "Ltd",
+            "organizationType": "Company",
+            "tradingName": "rcfc",
+            "contactMedium": []
+        },
+        {
+            "id": 2,
+            "href": "http://localhost:8080/partyManagement/v4/organization/2",
+            "isHeadOffice": true,
+            "isLegalEntity": true,
+            "name": "K.C. Football Club",
+            "nameType": "Ltd",
+            "organizationType": "Company",
+            "tradingName": "rcfc",
+            "contactMedium": []
+        }
+    ],
+    "individual": [
+        { 
+            "id": 1, 
+            "href": "http://localhost:8080/partyManagement/v4/individual/1",
+            "aristocraticTitle": "Sir", 
+            "birthDate": "2021-10-21T00:00:00z",
+            "countryOfBirth": "INDIA",
+            "familyName": "Geoffry",
+            "familyNamePrefix": "Phillipe",
+            "formattedName": "Mr Doe,JD,John",
+            "fullName": "Mr Doe,JD,John Phillipe Geoffry",
+            "gender": "male",
+            "givenName": "John",
+            "legalName": "John Doe",
+            "location": "",
+            "maritalStatus": "single",
+            "middleName": "Philipe",
+            "nationality": "indian",
+            "placeOfBirth": "bangalore",
+            "preferredGivenName": "John",
+            "title": "Mr",
+            "contactMedium": []
+        },
+        { 
+            "id": 2, 
+            "href": "http://localhost:8080/partyManagement/v4/individual/2",
+            "aristocraticTitle": "Madam", 
+            "birthDate": "2021-10-21T00:00:00z",
+            "countryOfBirth": "INDIA",
+            "familyName": "Geoffry",
+            "familyNamePrefix": "Phillipe",
+            "formattedName": "Mr Doe,JD,Jane",
+            "fullName": "Ms Doe,JD,Jane Phillipe Geoffry",
+            "gender": "male",
+            "givenName": "Jane",
+            "legalName": "Jane Doe",
+            "location": "",
+            "maritalStatus": "single",
+            "middleName": "Philipe",
+            "nationality": "indian",
+            "placeOfBirth": "bangalore",
+            "preferredGivenName": "John",
+            "title": "Ms",
+            "contactMedium": []
+        }
+    ]
+}
