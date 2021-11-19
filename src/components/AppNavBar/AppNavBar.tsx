@@ -193,7 +193,6 @@ export const AppNavBar: React.FunctionComponent<AppNavBarProps> = ({ title, subt
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-
                 {
                     navlinks.map((nav, idx) => (
                         <Route
@@ -204,7 +203,6 @@ export const AppNavBar: React.FunctionComponent<AppNavBarProps> = ({ title, subt
                         />
                     ))
                 }
-
             </main>
         </div>
     );

@@ -1,6 +1,8 @@
-import undraw_coding from './undraw_Coding_re_iv62.svg';
+import DevDraw from './dev.svg';
+import WipDraw from './wip.svg';
 
 
 export {
-    undraw_coding
+    DevDraw,
+    WipDraw
 }

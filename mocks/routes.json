@@ -1,3 +1,3 @@
 {
-    "/partyManagement/*": "/$1"
+    "/tmf-api/party/v1/*": "/$1"
 }
