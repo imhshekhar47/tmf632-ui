@@ -56,7 +56,7 @@ export const TextFieldView: React.FunctionComponent<TextFieldViewProps> = ({ siz
         } else {
             setTextValue(value as string);
         }
-    }, [value])
+    }, [value, type])
 
     const classes = useStyle();
     return (

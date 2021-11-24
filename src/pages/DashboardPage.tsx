@@ -14,7 +14,7 @@ export const DashboardPage: React.FunctionComponent<DahboardPageProps> = () => {
             <PageToolbar title="Dashboard" />
             
             <Box display="flex" justifyContent="center">
-                <img src={WipDraw} />
+                <img src={WipDraw} alt="Work in progress" />
                 {/* <Box flexGrow={1} p={2}>
                     <IndividualPartyList />
                 </Box>
